@@ -1,0 +1,18 @@
+
+.btnSuccess {
+	float : right;
+	margin: 2px;
+	padding: 4px;
+}
+
+.field {
+	float: left;
+	margin-left: 40px;
+}
+
+.labelForm {
+	font-size: large;
+	font-family: arial;
+	font-weight: lighter;
+	float: left;
+}
