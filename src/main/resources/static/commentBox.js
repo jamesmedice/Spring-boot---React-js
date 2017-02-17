@@ -18,12 +18,12 @@ var CommentForm = React.createClass({displayName: "CommentForm",
             	
             	React.createElement("div", {className: "field"}, 
             			React.createElement("Label", { className: "labelForm" }, "Author Name"),
-            			React.createElement("input", {type: "text", placeholder: "Your name", ref: "author"})
+            			React.createElement("input", {className: "inputForm" , type: "text", placeholder: "Your name", ref: "author"})
             	),
 
             	React.createElement("div", {className: "field"}, 
             			React.createElement("Label", { className: "labelForm" }, "Text Area"),
-            			React.createElement("input", {type: "text", placeholder: "Say something...", ref: "text"})
+            			React.createElement("input", {className: "inputForm" , type: "text", placeholder: "Say something...", ref: "text"})
             	), 
                 
                 React.createElement("input", {type: "submit", className: "btnSuccess", value: "Post"} )

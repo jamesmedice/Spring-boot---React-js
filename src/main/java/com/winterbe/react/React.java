@@ -24,6 +24,7 @@ public class React {
 		nashornScriptEngine.eval(read("static/vendor/showdown.min.js"));
 		nashornScriptEngine.eval(read("static/commentBox.js"));
 		nashornScriptEngine.eval(read("static/forum.js"));
+		nashornScriptEngine.eval(read("static/fipe.js"));
 	    } catch (ScriptException e) {
 		throw new RuntimeException(e);
 	    }
