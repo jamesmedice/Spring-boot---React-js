@@ -1,3 +1,7 @@
+.carPriceBox {
+	margin: 30px 0px 0px;
+	padding: 10px 0px 0px;	
+}
 .cursorRow {
 	cursor: pointer;
 }

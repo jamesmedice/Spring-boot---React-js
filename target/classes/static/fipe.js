@@ -205,7 +205,7 @@ var CarDetails = React.createClass({displayName: "CarDetails",
 				React.createElement("div", {id: "carModal" , className: "modal showOverlay"},
 						React.createElement("div", {className: "modal-dialog"}, 
 								React.createElement("div", {className: "modal-content"}, 
-										React.createElement("div", {className: "modal-header"}, null),
+										React.createElement("div", {className: "modal-header"}, "CARROS SELECIONADOS"),
 										React.createElement("div", {className: "modal-body"}, 
 												React.createElement(CarDetailItems, {data: this.state.data, id: this.state.id})
 										),
@@ -242,13 +242,20 @@ var CarDetailItems = React.createClass({displayName: "CarDetailItems",
 	            	    React.createElement("tbody", {key: Math.random()}, '', 
 	            	    	carItems
 	            		)
-	            )
+	            ),
+	            React.createElement("div", {id: "carPrice",  className: "carPriceBox" }, null)
 	        )
         );
     }
 });
 
 var CarDetail = React.createClass({displayName: "CarDetail",
+	getInitialState: function () {
+        return {id: ''};
+    },
+    onClick: function(event) {
+      this.setState({id: event.target.id});
+    },
 	render: function () {   	   	
         return (
 	            React.createElement("tr", {id: this.props.id + '/' + this.props.item.fipe_codigo, title: this.props.item.veiculo, onClick: showCarPrice },
@@ -260,6 +267,68 @@ var CarDetail = React.createClass({displayName: "CarDetail",
     }
 }); 
 
+var showCarPrice = function (id){	
+	React.render(
+	        React.createElement(CarPrice, {id: id.currentTarget.id}),
+	        document.getElementById("carPrice")
+	);	
+}
+
+var CarPrice = React.createClass({displayName: "CarPrice",
+	getInitialState: function () {
+        return {data: []};
+      },
+	    componentDidMount: function () {
+	    	fetch(prefix + 'veiculo/' + this.props.id + '.json' , {  
+	    	    method: 'GET'
+	    	  }) 
+	    	  .then((response) => {
+	    		console.log('Request succeeded with JSON response', response);  		    	    
+		        return response.json()
+		      })
+		      .then((data) => {
+		        this.setState({ data: data , id: this.props.id})
+		      })
+	    	  ;
+	  },
+	  shouldComponentUpdate: function(nextProps, nextState) {
+	    	if (nextProps.id != nextState.id) {
+	    		fetch(prefix + 'veiculo/' + nextProps.id + '.json', {  
+		    	    method: 'GET'
+		    	  }) 
+		    	  .then((response) => {		    	    
+			        return response.json()
+			      })
+			      .then((data) => {
+			        this.setState({ data: data , id :  this.props.id})
+			      });
+	    	}
+	    	return true;
+	    },
+    render: function () {   	   	
+        return (
+        		
+        		React.createElement("div", {className: "datagrid" }, 
+        	            React.createElement("table", {id: 'cars'},
+        	            		 React.createElement("thead", null,   
+        	            	    		React.createElement("th", null, 'Data'),
+        	                    	    React.createElement("th", null, 'Modelo'),
+        	                            React.createElement("th", null, 'Combustivel'),
+        	                            React.createElement("th", null, 'Preço')            	             	    
+        	            	     ),
+        	            	    React.createElement("tbody", {key: Math.random()}, '', 
+        	            	    		 React.createElement("tr", null,
+        	            			                React.createElement("td", null, this.state.data.referencia),
+        	            			                React.createElement("td", null, this.state.data.name),
+        	            			                React.createElement("td", null, this.state.data.combustivel),
+        	            			                React.createElement("td", null, this.state.data.preco)
+        	            		            )
+        	            		)
+        	            )
+        	        )
+            );
+    }
+});
 
 var closeModal = function (){
 	$('#carModal').remove();
