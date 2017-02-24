@@ -1,3 +1,7 @@
+.cursorRow {
+	cursor: pointer;
+}
+
 .brandList {
 	margin: -10px 5px 5px 20px;
 }
@@ -7,6 +11,10 @@ div.main {
 	border: solid 1px #0088DD; 
 	margin-bottom: 50px;     
 	overflow: auto;
+}
+
+div.showOverlay {
+	display: block !important;
 }
 
 .btnSuccess {
