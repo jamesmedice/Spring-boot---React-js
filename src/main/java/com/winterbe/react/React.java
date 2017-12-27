@@ -20,8 +20,8 @@ public class React {
 	    NashornScriptEngine nashornScriptEngine = (NashornScriptEngine) new ScriptEngineManager().getEngineByName("nashorn");
 	    try {
 		nashornScriptEngine.eval(read("static/nashorn-polyfill.js"));
-		nashornScriptEngine.eval(read("static/vendor/react.js"));
-		nashornScriptEngine.eval(read("static/vendor/showdown.min.js"));
+		nashornScriptEngine.eval(read("staticreact.js"));
+		nashornScriptEngine.eval(read("staticshowdown.min.js"));
 		nashornScriptEngine.eval(read("static/commentBox.js"));
 		nashornScriptEngine.eval(read("static/forum.js"));
 		nashornScriptEngine.eval(read("static/fipe.js"));

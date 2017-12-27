@@ -33,15 +33,8 @@ public class MainController {
     public String index(Map<String, Object> model) throws Exception {
 	try {
 
-	    // String forumTitle = react.renderForumBox(new
-	    // Title("Loading Forums"));
-	    // model.put("contentSibling", forumTitle);
-
 	    List<Forum> forums = forumService.getForums();
 	    List<Comment> comments = service.getComments();
-
-	    // String commentBox = react.renderCommentBox(comments);
-	    // model.put("content", commentBox);
 
 	    String dataSibling = mapper.writeValueAsString(forums);
 	    model.put("dataSibling", dataSibling);
